@@ -6,7 +6,6 @@ type Props = {
   params: Promise<{ id: string }>;
 };
 
-// Debe ser export default function
 export default async function MeetingDetailPage({ params }: Props) {
   const { id } = await params;
   const meetingId = Number(id);
