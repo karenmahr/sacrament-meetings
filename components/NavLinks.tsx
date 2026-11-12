@@ -7,9 +7,9 @@ import { usePathname } from 'next/navigation';
 export default function NavLinks() {
     const pathname = usePathname();
   return (
-    <ul className="p-4 border-l-4 border-blue-600 bg-gray-50 rounded">
-          <li><Link href="/" className={pathname === '/' ? 'font-bold text-blue-600' : 'text-gray-500'}>Home</Link></li>
-          <li><Link href="/meetings" className={pathname === '/meetings' ? 'font-bold text-blue-600' : 'text-gray-500'}>Meetings</Link></li>
+    <ul className="flex flex-wrap items-center justify-end gap-3 pt-2">
+          <li><Link href="/" className={pathname === '/' ? 'rounded-lg border border-slate-300 bg-white px-5 py-2.5 text-sm font-medium text-slate-700 shadow-sm transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2' : 'text-gray-500'}>Home</Link></li>
+          <li><Link href="/meetings" className={pathname === '/meetings' ? 'rounded-lg bg-blue-950 px-5 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-950 focus:ring-offset-2' : 'text-gray-500'}>Meetings</Link></li>
         </ul>
   );
 }

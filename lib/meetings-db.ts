@@ -19,6 +19,44 @@ const meetings: SacramentMeeting[] = [
     closingHymn: { number: 31, title: 'O God, Our Help in Ages Past' },
     closingPrayer: 'Brother Davis',
     announcements: ['Ward temple night: May 10']
+  },
+  {
+    id: 2,
+    date: '2026-11-08',
+    meetingType: 'general',
+    presiding: 'Area Seventy Roberts',
+    conducting: 'Bishop Anderson',
+    openingHymn: { number: 19, title: 'We Thank Thee, O God, for a Prophet' },
+    openingPrayer: 'Sister Rivera',
+    wardBusiness: [],
+    stakeBusiness: true,
+    sacramentHymn: { number: 175, title: 'O God, the Eternal Father' },
+    speakers: [
+      { name: 'Area Seventy Roberts', topic: 'Discipleship in daily life', type: 'speaker' },
+      { name: 'Ward Choir', topic: 'I Know That My Redeemer Lives', type: 'musical-number' }
+    ],
+    closingHymn: { number: 136, title: 'I Know That My Redeemer Lives' },
+    closingPrayer: 'Brother King',
+    announcements: ['Combined meeting for all local wards.']
+  },
+  {
+    id: 3,
+    date: '2026-11-15',
+    meetingType: 'regular',
+    presiding: 'Bishop Anderson',
+    conducting: 'Brother Miller',
+    openingHymn: { number: 85, title: 'How Firm a Foundation' },
+    openingPrayer: 'Sister Garcia',
+    wardBusiness: [],
+    stakeBusiness: false,
+    sacramentHymn: { number: 175, title: 'O God, the Eternal Father' },
+    speakers: [
+      { name: 'Brother Perez', topic: 'Gratitude', type: 'speaker' },
+      { name: 'Sister Lopez', topic: 'Service', type: 'speaker' }
+    ],
+    closingHymn: { number: 152, title: 'God Be with You Till We Meet Again' },
+    closingPrayer: 'Brother Taylor',
+    announcements: ['Choir practice after sacrament meeting.']
   }
 ];
 
