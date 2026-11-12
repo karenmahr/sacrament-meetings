@@ -15,7 +15,7 @@ async function MeetingsList() {
   const meetings: SacramentMeeting[] = await res.json();
 
   return (
-    <div className="grid gap-4">
+    <div className="grid grid-cols-1 gap-6 px-4 py-4 md:grid-cols-2 sm:px-6">
       {meetings.map((meeting) => (
         <MeetingCard key={meeting.id} meeting={meeting} />
       ))}

@@ -6,11 +6,17 @@ interface MeetingCardProps{
 }
 
 export function MeetingCard({ meeting }: MeetingCardProps) {
+  const formattedDate = new Date(`${meeting.date}T00:00:00`).toLocaleDateString('en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    });
   return (
     <div className="flex flex-col justify-between rounded-2xl border border-slate-300 bg-white p-6 text-slate-700 shadow-lg transition hover:shadow-xl">
       <div className="space-y-3">
         <h3 className="border-b border-slate-200 pb-3 text-xl font-extrabold text-blue-950">
-          Meeting Date: {meeting.date}
+          {formattedDate}
         </h3>
 
         <p className="text-sm sm:text-base">
