@@ -57,6 +57,54 @@ const meetings: SacramentMeeting[] = [
     closingHymn: { number: 152, title: 'God Be with You Till We Meet Again' },
     closingPrayer: 'Brother Taylor',
     announcements: ['Choir practice after sacrament meeting.']
+  },
+  {
+    id: 4,
+    date: '2026-11-22',
+    meetingType: 'regular',
+    presiding: 'President Thompson',
+    conducting: 'Bishop Anderson',
+    openingHymn: { number: 92, title: 'For the Beauty of the Earth' },
+    openingPrayer: 'Brother Wilson',
+    wardBusiness: [],
+    stakeBusiness: true,
+    sacramentHymn: { number: 185, title: 'Reverently and Meekly Now' },
+    speakers: [
+      { name: 'Sister Evans', topic: 'The Power of Daily Prayer', type: 'speaker' },
+      { name: 'Brother Harris', topic: 'Keeping Our Covenants', type: 'speaker' },
+      { name: 'Sister Reed & Brother Scott', topic: 'Come, Thou Fount of Every Blessing', type: 'musical-number' }
+    ],
+    closingHymn: { number: 249, title: 'Called to Serve' },
+    closingPrayer: 'Sister Baker',
+    announcements: [
+      'Stake leadership training next Sunday at 4:00 PM.',
+      'Sign up for the annual ward Thanksgiving dinner in the foyer.'
+    ]
+  },
+  {
+    id: 5,
+    date: '2026-11-29',
+    meetingType: 'regular',
+    presiding: 'Bishop Anderson',
+    conducting: 'Brother Morales',
+    openingHymn: { number: 6, title: 'Redeemer of Israel' },
+    openingPrayer: 'Sister Turner',
+    wardBusiness: [
+      { description: 'Sustaining of Brother Sanchez as Young Men advisor' }
+    ],
+    stakeBusiness: false,
+    sacramentHymn: { number: 172, title: 'In Humility, Our Savior' },
+    speakers: [
+      { name: 'Brother Gomez', topic: 'Preparing for the Second Coming', type: 'speaker' },
+      { name: 'Sister White', topic: 'Finding Joy in Temple Work', type: 'speaker' },
+      { name: 'Ward Choir', topic: 'Be Still, My Soul', type: 'musical-number' }
+    ],
+    closingHymn: { number: 219, title: 'Because I Have Been Given Much' },
+    closingPrayer: 'Brother Scott',
+    announcements: [
+      'Ward Christmas party planning committee meets Wednesday at 7:00 PM.',
+      'Fast and Testimony meeting next Sunday.'
+    ]
   }
 ];
 
