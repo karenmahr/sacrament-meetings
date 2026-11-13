@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { MeetingDetail } from "@/components/MeetingDetail";
 
+
 type Props = {
   params: Promise<{ id: string }>;
 };
@@ -13,6 +14,7 @@ const baseUrl = process.env.VERCEL_URL
 export default async function MeetingDetailPage({ params }: Props) {
   const { id } = await params;
   const meetingId = Number(id);
+   
 
   if (Number.isNaN(meetingId)) {
     notFound();
