@@ -11,7 +11,7 @@ export async function GET(
         return Response.json({ message: 'ID parameter is not a valid number' }, { status: 400 });
     }
 
-    const meeting = getMeetingById(numericId);
+    const meeting = await getMeetingById(numericId);
     if (!meeting) {
         return Response.json({ message: 'No meeting with the given ID exists' }, { status: 404 });
     }

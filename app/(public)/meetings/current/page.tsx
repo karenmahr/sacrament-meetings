@@ -12,7 +12,7 @@ export default async function CurrentMeetingPage() {
     sunday.setDate(today.getDate() - dayOfWeek); // roll back to Sunday
     const formattedDate=sunday.toISOString().split('T')[0]; // format as YYYY-MM-DD
 
-    const matchingMeetings= getMeetings(formattedDate);
+    const matchingMeetings= await getMeetings(formattedDate);
 
     if(matchingMeetings.length>0){
         redirect(`/meetings/${matchingMeetings[0].id}`);
