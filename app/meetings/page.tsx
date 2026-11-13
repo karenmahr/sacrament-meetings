@@ -3,8 +3,12 @@ import { MeetingCard } from "@/components/MeetingCard";
 import { SacramentMeeting } from "@/lib/types";
 import { notFound } from "next/navigation";
 
+const baseUrl = process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}`
+  : "http://localhost:3000";
+
 async function MeetingsList() {
-  const res = await fetch("http://localhost:3000/api/meetings", {
+  const res = await fetch(`${baseUrl}/api/meetings`, {
     cache: "no-store",
   });
 
