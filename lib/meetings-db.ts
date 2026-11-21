@@ -1,5 +1,6 @@
 import { neon } from '@neondatabase/serverless';
 import type { SacramentMeeting } from './types';
+import { revalidatePath } from 'next/cache';
 
 const sql = neon(process.env.DATABASE_URL!);
 
@@ -55,7 +56,7 @@ export async function getMeetingsTotalPages(
 }
 
 export async function getMeetingById(
-  id: number
+  id: number | string
 ): Promise<SacramentMeeting | null> {
   const rows = await sql`
     SELECT
@@ -76,20 +77,41 @@ export async function getMeetingById(
   return (rows[0] as unknown as SacramentMeeting) ?? null;
 }
 
-// Mutation stubs — will be wired to the database in Week 04
-export async function addMeeting(
-  data: Omit<SacramentMeeting, 'id'>
-): Promise<SacramentMeeting> {
-  throw new Error('addMeeting: database implementation coming in Week 04');
+export async function createMeeting(data: { date: string; meetingType: string; presiding: string; conducting: string; announcements: string[]; openingHymn: number; openingPrayer: string; wardBusiness: boolean; stakeBusiness: boolean; sacramentHymn: number; speakers: string[]; closingHymn: number; closingPrayer: string }) {
+  const sql = neon(process.env.DATABASE_URL!);
+  await sql`INSERT INTO meetings (
+      date, meeting_type, presiding, conducting, announcements,
+      opening_hymn, opening_prayer, ward_business, stake_business,
+      sacrament_hymn, speakers, closing_hymn, closing_prayer
+    ) VALUES (
+      ${data.date}, ${data.meetingType}, ${data.presiding}, ${data.conducting}, ${data.announcements},
+      ${data.openingHymn}, ${data.openingPrayer}, ${data.wardBusiness}, ${data.stakeBusiness},
+      ${data.sacramentHymn}, ${data.speakers}, ${data.closingHymn}, ${data.closingPrayer}
+    )`;
 }
 
-export async function updateMeeting(
-  id: number,
-  updates: Partial<SacramentMeeting>
-): Promise<SacramentMeeting | null> {
-  throw new Error('updateMeeting: database implementation coming in Week 04');
+export async function updateMeeting(id: number | string, data: { date: string; meetingType: string; presiding: string; conducting: string; announcements: string[]; openingHymn: number; openingPrayer: string; wardBusiness: boolean; stakeBusiness: boolean; sacramentHymn: number; speakers: string[]; closingHymn: number; closingPrayer: string }) {
+  const sql = neon(process.env.DATABASE_URL!);
+  await sql`UPDATE meetings SET
+      date = ${data.date},
+      meeting_type = ${data.meetingType},
+      presiding = ${data.presiding},
+      conducting = ${data.conducting},
+      announcements = ${data.announcements},
+      opening_hymn = ${data.openingHymn},
+      opening_prayer = ${data.openingPrayer},
+      ward_business = ${data.wardBusiness},
+      stake_business = ${data.stakeBusiness},
+      sacrament_hymn = ${data.sacramentHymn},
+      speakers = ${data.speakers},
+      closing_hymn = ${data.closingHymn},
+      closing_prayer = ${data.closingPrayer}
+    WHERE id = ${id}`;
 }
 
-export async function deleteMeeting(id: number): Promise<boolean> {
-  throw new Error('deleteMeeting: database implementation coming in Week 04');
+
+export async function deleteMeeting(id: string){
+ const sql = neon(process.env.DATABASE_URL!);
+  await sql`DELETE FROM meetings WHERE id = ${id}`;
 }
+
