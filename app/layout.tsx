@@ -4,6 +4,7 @@ import "./globals.css";
 import Footer from "@/app/components/Footer";
 import Header from "@/app/components/Header";
 import { SessionProvider } from 'next-auth/react';
+import { Suspense } from 'react';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,7 +30,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
-        <SessionProvider>{children}</SessionProvider>
+        <SessionProvider>
+          <Suspense fallback={<header className="h-16 border-b bg-white" />}>
+            <Header />
+          </Suspense>
+          {children}
+        </SessionProvider>
+        <Footer />
       </body>
     </html>
   );

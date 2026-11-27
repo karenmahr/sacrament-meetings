@@ -9,8 +9,9 @@ export const authConfig = {
       const isLoggedIn = !!auth?.user;
 
       // Protect all routes under /dashboard
-      const isProtected = nextUrl.pathname.startsWith('/dashboard');
-
+      const isProtected = nextUrl.pathname.startsWith('/meetings/new')||
+        nextUrl.pathname.endsWith('/edit');
+        
       if (isProtected) {
         if (isLoggedIn) return true;
         return false; // redirects to /login
@@ -18,7 +19,7 @@ export const authConfig = {
 
       // Redirect already-logged-in users away from the login page
       if (isLoggedIn && nextUrl.pathname === '/login') {
-        return Response.redirect(new URL('/dashboard', nextUrl));
+        return Response.redirect(new URL('/meetings/new', nextUrl));
       }
 
       return true;
