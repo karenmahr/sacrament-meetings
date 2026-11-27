@@ -109,9 +109,31 @@ export async function updateMeeting(id: number | string, data: { date: string; m
     WHERE id = ${id}`;
 }
 
-
 export async function deleteMeeting(id: string){
  const sql = neon(process.env.DATABASE_URL!);
   await sql`DELETE FROM meetings WHERE id = ${id}`;
 }
 
+export type User = {
+  id: string;
+  name: string;
+  email: string;
+  password: string;
+  role?: string;
+};
+
+export async function getUserByEmail(email: string): Promise<User | null> {
+  try {
+    const rows = await sql`
+      SELECT id, name, email, password, role
+      FROM users
+      WHERE LOWER(email) = LOWER(${email.trim()})
+      LIMIT 1
+    `;
+
+    return (rows[0] as User) ?? null;
+  } catch (error) {
+    console.error('Error fetching user by email:', error);
+    throw new Error('Failed to fetch user.');
+  }
+}

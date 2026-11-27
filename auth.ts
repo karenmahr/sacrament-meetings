@@ -3,9 +3,9 @@ import Credentials from 'next-auth/providers/credentials';
 import { z } from 'zod';
 import bcrypt from 'bcryptjs';
 import { authConfig } from './auth.config';
-import { getUserByEmail } from '@/app/lib/data'; // your DB query function
+import { getUserByEmail } from '@/app/lib/meetings-db'; // your DB query function
 
-export const { auth, signIn, signOut } = NextAuth({
+export const { handlers, signIn, signOut, auth } = NextAuth({
   ...authConfig,
   providers: [
     Credentials({
@@ -23,8 +23,10 @@ export const { auth, signIn, signOut } = NextAuth({
         const passwordsMatch = await bcrypt.compare(password, user.passwordHash);
         if (passwordsMatch) return user;
 
-        return null;
-      },
-    }),
+        return {id: String(user.id),
+          name: user.name,
+          email: user.email,
+      };
+}}),
   ],
 });
