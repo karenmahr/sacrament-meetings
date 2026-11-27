@@ -1,4 +1,4 @@
-import { getMeetings, getMeetingsTotalPages } from '@/lib/meetings-db';
+import { getMeetings, getMeetingsTotalPages } from '@/app/lib/meetings-db';
 import { MeetingSearch } from '@/components/MeetingSearch';
 import { MeetingCard } from '@/components/MeetingCard';
 import { Pagination } from '@/components/Pagination';
