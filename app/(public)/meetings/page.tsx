@@ -1,7 +1,7 @@
 import { getMeetings, getMeetingsTotalPages } from '@/app/lib/meetings-db';
-import { MeetingSearch } from '@/components/MeetingSearch';
-import { MeetingCard } from '@/components/MeetingCard';
-import { Pagination } from '@/components/Pagination';
+import { MeetingSearch } from '@/app/components/MeetingSearch';
+import { MeetingCard } from '@/app/components/MeetingCard';
+import { Pagination } from '@/app/components/Pagination';
 
 export default async function MeetingsPage(props: {
   searchParams?: Promise<{ query?: string; page?: string }>;
