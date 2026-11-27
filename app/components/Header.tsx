@@ -24,7 +24,7 @@ export default async function Header() {
       </div>
       <nav className="flex flex-wrap items-center justify-end gap-3 pt-2 ">
         <Suspense fallback={null}>
-          <NavLinks />
+          <NavLinks userName={session?.user?.name} />
         </Suspense>
   
       </nav>

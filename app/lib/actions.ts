@@ -41,7 +41,7 @@ export async function authenticate(
 
 const MeetingFormSchema = z.object({
       date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
-      meetingType: z.enum(['sacrament', 'ward', 'stake']),
+      meetingType: z.enum(['regular', 'testimony', 'stake', 'general', 'special']),
       presiding: z.string().max(100),
       conducting: z.string().max(100),
       announcements: z.array(z.string().max(200)),
@@ -55,21 +55,29 @@ const MeetingFormSchema = z.object({
       closingPrayer: z.string()
 });
 
+function splitLines(value: FormDataEntryValue | null): string[] {
+  if (typeof value !== 'string' || !value.trim()) return [];
+  return value
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean);
+}
+
 function parseMeetingFormData(formData: FormData) {
   const raw={
     date: formData.get('date'),
     meetingType: formData.get('meetingType'),
     presiding: formData.get('presiding'),
     conducting: formData.get('conducting'),
-    announcements: formData.get('announcements'),
-    openingHymn: formData.get('openingHymn'),
+    announcements: splitLines(formData.get('announcements')),
+    openingHymn: Number(formData.get('openingHymn')),
     openingPrayer: formData.get('openingPrayer'),
-    wardBusiness: formData.get('wardBusiness'),
-    stakeBusiness: formData.get('stakeBusiness'),
-    sacramentHymn: formData.get('sacramentHymn'),
-    speakers: formData.get('speakers'),
-    closingHymn: formData.get('closingHymn'),
-    closingPrayer: formData.get('closingPrayer')
+    wardBusiness: formData.get('wardBusiness') === 'on',
+    stakeBusiness: formData.get('stakeBusiness') === 'on',
+    sacramentHymn: Number(formData.get('sacramentHymn')),
+    speakers: splitLines(formData.get('speakers')),
+    closingHymn: Number(formData.get('closingHymn')),
+    closingPrayer: formData.get('closingPrayer'),
   };
   return MeetingFormSchema.safeParse(raw);
 }

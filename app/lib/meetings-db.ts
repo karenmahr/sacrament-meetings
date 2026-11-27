@@ -86,7 +86,7 @@ export async function createMeeting(data: { date: string; meetingType: string; p
     ) VALUES (
       ${data.date}, ${data.meetingType}, ${data.presiding}, ${data.conducting}, ${data.announcements},
       ${data.openingHymn}, ${data.openingPrayer}, ${data.wardBusiness}, ${data.stakeBusiness},
-      ${data.sacramentHymn}, ${data.speakers}, ${data.closingHymn}, ${data.closingPrayer}
+      ${data.sacramentHymn}, ${JSON.stringify(data.speakers)}, ${data.closingHymn}, ${data.closingPrayer}
     )`;
 }
 
